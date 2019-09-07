@@ -8,3 +8,14 @@ exports.isAuthenticated = (req, res, next) =>  req.isAuthenticated() ? next() : 
  * @description - renvoi les données users
  */
 exports.getUserProfile = (req, res) => res.json({ user: req.user });
+
+/**
+ * @description - Supprimer la session
+ */
+exports.userDestroySession = (req, res, next) => {
+ req.session.destroy();
+
+ return res.json({session: false});
+};
+
+
