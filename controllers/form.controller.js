@@ -15,10 +15,12 @@ exports.createUser = async (req, res) => {
 
 		const newUser = await insertUser({
 			nickname: nickname,
-			password: password
+			password: password,
+			email, 
+			password
 		});
 
-		newUser && res.status(200).json({ success: true});
+		user && res.status(200).json({ success: "its okay" });
 	} catch (error) {
 		console.log(error);
 	}
@@ -41,7 +43,6 @@ exports.userConnexion = (req, res, next) => {
 			}
 
 			// retourner le user sans le mot de passe
-
 			return res.json({ success: user });
 		});
 	})(req, res, next);
