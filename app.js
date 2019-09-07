@@ -1,11 +1,11 @@
 const createError = require("http-errors");
 const express = require("express");
 const passport = require("passport");
+require ('./controllers/passport.controller');
 const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
 const mongooseConnection = require("./models/config.mongo");
 const bodyParser = require("body-parser");
-const logger = require("morgan");
 const dotEnv = require("dotenv");
 
 // import routes
@@ -15,7 +15,6 @@ const app = express();
 dotEnv.config();
 
 
-app.use(logger("dev"));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
@@ -41,6 +40,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // routes
+
 app.use('/api', usersFormRouter, userProfileRoute);
 
 
